@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<h1>Lista de Ni&ntilde;os</h1>
+<% if @ninos.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Sexo</th>
+      <th>Oficina</th>
+      <th>Familia</th>
+      <th>Tipo acogimiento</th>
+      <th>Iglesia</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ninos.each do |nino| %>
+      <tr>
+        <td><%= nino.nombre %></td>
+        <td><%= nino.edad %></td>
+        <td><%= nino.sexo %></td>
+        <td><%= nombre_oficina(nino) %></td>
+        <td><%= nombre_familia(nino) %></td>
+        <td><%= nino.tipo_acogimiento %></td>
+        <td><%= link_to nombre_iglesia(nino),iglesia_path(nino.iglesia.id) %></td>
+        <td><%= link_to 'Ver', nino %></td>
+        <td><%= link_to 'Editar', edit_nino_path(nino) %></td>
+        <td><%= link_to 'Borrar', nino, method: :delete, data: { confirm: 'Esta seguro/a de borrar a esta persona?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Agregar Niño', new_nino_path %>
+<% else %>
+  Actualmente no hay ni&ntilde;os. <%= link_to 'Agrega uno', new_nino_path %>!
+<% end %>

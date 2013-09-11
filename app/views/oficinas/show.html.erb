@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @oficina.nombre %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @oficina.direccion %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @oficina.responsable %>
+</p>
+
+<%= link_to 'Editar', edit_oficina_path(@oficina) %> |
+<%= link_to 'Lista de oficinas', oficinas_path %>

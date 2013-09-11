@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+<h1>Datos de <%= @nino.nombre %></h1>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= @nino.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Edad:</strong>
+  <%= @nino.edad %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @nino.sexo %>
+</p>
+
+<p>
+  <strong>Fecha ingreso:</strong>
+  <%= @nino.fecha_ingreso %>
+</p>
+
+<p>
+  <strong>Fecha egreso:</strong>
+  <%= @nino.fecha_egreso %>
+</p>
+
+<p>
+  <strong>Motivo ingreso:</strong>
+  <%= @nino.motivo_ingreso %>
+</p>
+
+<p>
+  <strong>Motivo egreso:</strong>
+  <%= @nino.motivo_egreso %>
+</p>
+
+<p>
+  <strong>Fecha vencimiento medida:</strong>
+  <%= @nino.fecha_vencimiento_medida %>
+</p>
+
+<p>
+  <strong>Oficina:</strong>
+  <%= nombre_oficina(@nino) %>
+</p>
+
+<p>
+  <strong>Familia:</strong>
+  <%= nombre_familia(@nino) %>
+</p>
+
+<p>
+  <strong>Tipo acogimiento:</strong>
+  <%= @nino.tipo_acogimiento %>
+</p>
+
+<p>
+  <strong>Iglesia:</strong>
+  <%= nombre_iglesia(@nino) %>
+</p>
+
+<%= link_to 'Editar', edit_nino_path(@nino) %> |
+<%= link_to 'Regresar', ninos_path %>

@@ -1,0 +1,44 @@
+<%= form_for(@red) do |f| %>
+  <% if @red.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@red.errors.count, "error") %> prohibited this red from being saved:</h2>
+      <ul>
+      <% @red.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :region_id %><br>
+    <%= select :red,:region_id,map_regiones(@regiones) %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_nacimiento %><br>
+    <%= f.date_select :fecha_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono %><br>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="field">
+    <%= f.label :direccion %><br>
+    <%= f.text_area :direccion %>
+  </div>
+  <div class="field">
+    <%= f.label :servicio %><br>
+    <%= f.text_area :servicio %>
+  </div>
+  <div class="field">
+    <%= f.label :condiciones %><br>
+    <%= f.text_area :condiciones %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar' %>
+  </div>
+<% end %>

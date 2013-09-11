@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<h1>Lista de oficinas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Responsable</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @oficinas.each do |oficina| %>
+      <tr>
+        <td><%= oficina.nombre %></td>
+        <td><%= oficina.direccion %></td>
+        <td><%= oficina.responsable %></td>
+        <td><%= link_to 'Ver', oficina %></td>
+        <td><%= link_to 'Editar', edit_oficina_path(oficina) %></td>
+        <td><%= link_to 'Borrar', oficina, method: :delete, data: { confirm: 'Quiere borrar esta oficina?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Agregar Oficina', new_oficina_path %>

@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<h1>Datos de <%= @iglesia.nombre %></h1>
+
+<p>
+  <strong>Pastor:</strong>
+  <%= @iglesia.pastor %>
+</p>
+
+<p>
+  <strong>Coordinadores:</strong>
+  <%= @iglesia.coordinadores %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @iglesia.direccion %>
+</p>
+
+<p>
+  <strong>Compromiso economico:</strong>
+  <%= @iglesia.compromiso_economico %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @iglesia.region.nombre %>
+</p>
+
+<p>
+  <strong>Contacto administrativo:</strong>
+  <%= @iglesia.contacto_administrativo %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @iglesia.telefono %>
+</p>
+
+<p>
+  <strong>Correos:</strong>
+  <%= @iglesia.correos %>
+</p>
+
+<h3>Ni&ntilde;os de <%= @iglesia.nombre %></h3>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+  </tr>
+  <% @iglesia.ninos.each do |nino| %>
+    <tr>
+      <td><%= link_to nino.nombre,nino_path(nino.id) %></td>
+      <td><%= nino.edad %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<%= link_to 'Editar', edit_iglesia_path(@iglesia) %> |
+<%= link_to 'Listado de iglesias', iglesias_path %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombre: MyString
+  fecha_nacimiento: 2013-08-31 08:56:25
+  edad: 1
+  sexo: MyString
+  fecha_ingreso: 2013-08-31 08:56:25
+  fecha_egreso: 2013-08-31 08:56:25
+  motivo_ingreso: MyText
+  motivo_egreso: MyText
+  fecha_vencimiento_medida: 2013-08-31 08:56:25
+  oficina_id: 1
+  familia_id: 1
+  tipo_acogimiento: MyString
+  iglesia_id: 1
+
+two:
+  nombre: MyString
+  fecha_nacimiento: 2013-08-31 08:56:25
+  edad: 1
+  sexo: MyString
+  fecha_ingreso: 2013-08-31 08:56:25
+  fecha_egreso: 2013-08-31 08:56:25
+  motivo_ingreso: MyText
+  motivo_egreso: MyText
+  fecha_vencimiento_medida: 2013-08-31 08:56:25
+  oficina_id: 1
+  familia_id: 1
+  tipo_acogimiento: MyString
+  iglesia_id: 1

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @familia.nombre %>
+</p>
+
+<p>
+  <strong>Grupo:</strong>
+  <%= @familia.grupo %>
+</p>
+
+<p>
+  <strong>Telefonos:</strong>
+  <%= @familia.telefonos %>
+</p>
+
+<p>
+  <strong>Correo:</strong>
+  <%= @familia.correo %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @familia.direccion %>
+</p>
+
+<p>
+  <strong>Aval:</strong>
+  <%= @familia.aval %>
+</p>
+
+<p>
+  <strong>Iglesia:</strong>
+  <%= @familia.iglesia.nombre %>
+</p>
+
+<p>
+  <strong>Tipo acogimiento:</strong>
+  <%= @familia.tipo_acogimiento %>
+</p>
+
+<p>
+  <strong>Perfil:</strong>
+  <%= @familia.perfil %>
+</p>
+
+<%= link_to 'Editar', edit_familia_path(@familia) %> |
+<%= link_to 'Listado de familias', familias_path %>

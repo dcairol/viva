@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pastor: MyString
+  coordinadores: MyText
+  direccion: MyText
+  compromiso_economico: MyText
+  region_id: 1
+  contacto_administrativo: MyString
+  telefono: MyString
+  correos: MyString
+
+two:
+  pastor: MyString
+  coordinadores: MyText
+  direccion: MyText
+  compromiso_economico: MyText
+  region_id: 1
+  contacto_administrativo: MyString
+  telefono: MyString
+  correos: MyString

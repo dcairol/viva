@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombre: MyString
+  grupo: MyString
+  telefonos: MyText
+  correo: MyString
+  direccion: MyText
+  aval: MyString
+  iglesia_id: 1
+  tipo_acogimiento: MyString
+  perfil: MyText
+
+two:
+  nombre: MyString
+  grupo: MyString
+  telefonos: MyText
+  correo: MyString
+  direccion: MyText
+  aval: MyString
+  iglesia_id: 1
+  tipo_acogimiento: MyString
+  perfil: MyText

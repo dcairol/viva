@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Region:</strong>
+  <%= nombre_region(@red) %>
+</p>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= @red.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @red.telefono %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @red.direccion %>
+</p>
+
+<p>
+  <strong>Servicio:</strong>
+  <%= @red.servicio %>
+</p>
+
+<p>
+  <strong>Condiciones:</strong>
+  <%= @red.condiciones %>
+</p>
+
+<%= link_to 'Editar', edit_red_path(@red) %> |
+<%= link_to 'Listado de Redes', reds_path %>

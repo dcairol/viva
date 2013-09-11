@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>Redes</h1>
+<% if @reds.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Telefono</th>
+      <th>Direccion</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reds.each do |red| %>
+      <tr>
+        <td><%= nombre_region(red) %></td>
+        <td><%= red.telefono %></td>
+        <td><%= red.direccion %></td>
+        <td><%= link_to 'Mostrar', red %></td>
+        <td><%= link_to 'Editar', edit_red_path(red) %></td>
+        <td><%= link_to 'Borrar', red, method: :delete, data: { confirm: 'Quiere borrar esta región?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Agregar Red', new_red_path %>
+<% else %>
+  Actualmente no hay redes. <%= link_to 'Agrega una', new_red_path %>!
+<% end %>

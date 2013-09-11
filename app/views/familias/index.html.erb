@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<h1>Familias</h1>
+<% if @familias.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Grupo</th>
+      <th>Telefonos</th>
+      <th>Correo</th>
+      <th>Direccion</th>
+      <th>Aval</th>
+      <th>Iglesia</th>
+      <th>Tipo acogimiento</th>
+      <th>Perfil</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @familias.each do |familia| %>
+      <tr>
+        <td><%= familia.nombre %></td>
+        <td><%= familia.grupo %></td>
+        <td><%= familia.telefonos %></td>
+        <td><%= familia.correo %></td>
+        <td><%= familia.direccion %></td>
+        <td><%= familia.aval %></td>
+        <td><%= familia.iglesia.nombre %></td>
+        <td><%= familia.tipo_acogimiento %></td>
+        <td><%= familia.perfil %></td>
+        <td><%= link_to 'Show', familia %></td>
+        <td><%= link_to 'Edit', edit_familia_path(familia) %></td>
+        <td><%= link_to 'Destroy', familia, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Agregar Familia', new_familia_path %>
+<% else %>
+  Actualmente no hay familias. <%= link_to 'Agrega una', new_familia_path %>!
+<% end %>

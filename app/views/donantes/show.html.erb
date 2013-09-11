@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @donante.nombre %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @donante.telefono %>
+</p>
+
+<p>
+  <strong>Empresa:</strong>
+  <%= @donante.empresa %>
+</p>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @donante.monto %>
+</p>
+
+<p>
+  <strong>Periocidad:</strong>
+  <%= @donante.periocidad %>
+</p>
+
+<%= link_to 'Editar', edit_donante_path(@donante) %> |
+<%= link_to 'Regresar', donantes_path %>

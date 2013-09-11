@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  telefono: MyString
+  telefoneable_id: 1
+  telefoneable_type: MyString
+
+two:
+  telefono: MyString
+  telefoneable_id: 1
+  telefoneable_type: MyString

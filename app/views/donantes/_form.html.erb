@@ -1,0 +1,37 @@
+<%= form_for(@donante) do |f| %>
+  <% if @donante.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@donante.errors.count, "error") %> prohibited this donante from being saved:</h2>
+
+      <ul>
+      <% @donante.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono %><br>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="field">
+    <%= f.label :empresa %><br>
+    <%= f.text_field :empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :monto %><br>
+    <%= f.number_field :monto %>
+  </div>
+  <div class="field">
+    <%= f.label :periocidad %><br>
+    <%= f.text_field :periocidad %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

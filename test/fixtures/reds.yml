@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  region_id: 1
+  fecha_nacimiento: 2013-08-31 08:52:27
+  telefono: MyString
+  direccion: MyText
+  servicio: MyText
+  condiciones: MyText
+
+two:
+  region_id: 1
+  fecha_nacimiento: 2013-08-31 08:52:27
+  telefono: MyString
+  direccion: MyText
+  servicio: MyText
+  condiciones: MyText

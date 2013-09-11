@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<h1>Donantes</h1>
+<% if @donantes.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Telefono</th>
+      <th>Empresa</th>
+      <th>Monto</th>
+      <th>Periocidad</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donantes.each do |donante| %>
+      <tr>
+        <td><%= donante.nombre %></td>
+        <td><%= donante.telefono %></td>
+        <td><%= donante.empresa %></td>
+        <td><%= donante.monto %></td>
+        <td><%= donante.periocidad %></td>
+        <td><%= link_to 'Show', donante %></td>
+        <td><%= link_to 'Edit', edit_donante_path(donante) %></td>
+        <td><%= link_to 'Destroy', donante, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Agregar Donante', new_donante_path %>
+<% else %>
+  Actualmente no hay donantes. <%= link_to 'Agrega uno', new_donante_path %>!
+<% end %>

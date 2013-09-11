@@ -1,0 +1,69 @@
+<%= form_for(@nino) do |f| %>
+  <% if @nino.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nino.errors.count, "error") %> prohibited this nino from being saved:</h2
+
+      <ul>
+      <% @nino.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_nacimiento %><br>
+    <%= f.date_select :fecha_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :edad %><br>
+    <%= f.number_field :edad %>
+  </div>
+  <div class="field">
+    <%= f.label :sexo %><br>
+    <%= select(:nino,:sexo,['Femenino','Masculino']) %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_ingreso %><br>
+    <%= f.date_select :fecha_ingreso %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_egreso %><br>
+    <%= f.date_select :fecha_egreso %>
+  </div>
+  <div class="field">
+    <%= f.label :motivo_ingreso %><br>
+    <%= f.text_area :motivo_ingreso %>
+  </div>
+  <div class="field">
+    <%= f.label :motivo_egreso %><br>
+    <%= f.text_area :motivo_egreso %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_vencimiento_medida %><br>
+    <%= f.date_select :fecha_vencimiento_medida %>
+  </div>
+  <div class="field">
+    <%= f.label :oficina_id %><br>
+    <%= select(:nino,:oficina_id,map_familias(@oficinas)) %>
+  </div>
+  <div class="field">
+    <%= f.label :familia_id %><br>
+    <%= select(:nino,:familia_id,map_familias(@familias)) %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_acogimiento %><br>
+    <%= f.text_field :tipo_acogimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :iglesia_id %><br>
+    <%= select(:nino,:iglesia_id,map_familias(@iglesias)) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar' %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<h1>Lista de Iglesias</h1>
+<% if @iglesias.present? %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Pastor</th>
+      <th>Coordinadores</th>
+      <th>Direccion</th>
+      <th>Compromiso economico</th>
+      <th>Region</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @iglesias.each do |iglesia| %>
+      <tr>
+        <td><%= iglesia.nombre %></td>
+        <td><%= iglesia.pastor %></td>
+        <td><%= iglesia.coordinadores %></td>
+        <td><%= iglesia.direccion %></td>
+        <td><%= iglesia.compromiso_economico %></td>
+        <td><%= iglesia.region.nombre %></td>
+        <td><%= link_to 'Ver', iglesia %></td>
+        <td><%= link_to 'Editar', edit_iglesia_path(iglesia) %></td>
+        <td><%= link_to 'Borrar', iglesia, method: :delete, data: { confirm: 'Quiere borrar esta iglesia?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Agregar Iglesia', new_iglesia_path %>
+<% else %>
+  Actualmente no iglesias. <%= link_to 'Agrega una', new_iglesia_path %>!
+<% end %>
