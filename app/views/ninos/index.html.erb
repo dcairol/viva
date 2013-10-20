@@ -23,10 +23,10 @@
         <td><%= nino.nombre %></td>
         <td><%= nino.edad %></td>
         <td><%= nino.sexo %></td>
-        <td><%= nombre_oficina(nino) %></td>
-        <td><%= nombre_familia(nino) %></td>
+        <td><%= nombre_oficina(nino) if nino.oficina %></td>
+        <td><%= nombre_familia(nino) if nino.familia %></td>
         <td><%= nino.tipo_acogimiento %></td>
-        <td><%= link_to nombre_iglesia(nino),iglesia_path(nino.iglesia.id) %></td>
+        <td><%= link_to(nombre_iglesia(nino),iglesia_path(nino.iglesia.id)) if nino.iglesia %></td>
         <td><%= link_to 'Ver', nino %></td>
         <td><%= link_to 'Editar', edit_nino_path(nino) %></td>
         <td><%= link_to 'Borrar', nino, method: :delete, data: { confirm: 'Esta seguro/a de borrar a esta persona?' } %></td>

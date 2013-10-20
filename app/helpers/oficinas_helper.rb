@@ -4,6 +4,6 @@ module OficinasHelper
   end
 
   def nombre_oficina obj
-    obj.oficina.nombre
+    obj.oficina.nombre if obj.oficina
   end
 end

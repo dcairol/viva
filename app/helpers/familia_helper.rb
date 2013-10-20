@@ -4,6 +4,6 @@ module FamiliaHelper
   end
 
   def nombre_familia obj
-    obj.familia.nombre
+    obj.familia.nombre if obj.familia
   end
 end

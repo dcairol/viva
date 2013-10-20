@@ -4,6 +4,6 @@ module IglesiaHelper
   end
 
   def nombre_iglesia obj
-    obj.iglesia.nombre
+    obj.iglesia.nombre if obj.iglesia
   end
 end

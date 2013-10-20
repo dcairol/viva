@@ -16,7 +16,7 @@
   <tbody>
     <% @reds.each do |red| %>
       <tr>
-        <td><%= nombre_region(red) %></td>
+        <td><%= nombre_region(red) if red.region %></td>
         <td><%= red.telefono %></td>
         <td><%= red.direccion %></td>
         <td><%= link_to 'Mostrar', red %></td>

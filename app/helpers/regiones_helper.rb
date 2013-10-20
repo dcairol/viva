@@ -4,6 +4,6 @@ module RegionesHelper
   end
 
   def nombre_region obj
-    obj.region.nombre
+    obj.region.nombre if obj.region
   end
 end

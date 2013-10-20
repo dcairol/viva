@@ -43,12 +43,12 @@
 
 <p>
   <strong>Oficina:</strong>
-  <%= nombre_oficina(@nino) %>
+  <%= nombre_oficina(@nino) if @nino.oficina %>
 </p>
 
 <p>
   <strong>Familia:</strong>
-  <%= nombre_familia(@nino) %>
+  <%= nombre_familia(@nino) if @nino.familia %>
 </p>
 
 <p>
@@ -58,7 +58,7 @@
 
 <p>
   <strong>Iglesia:</strong>
-  <%= nombre_iglesia(@nino) %>
+  <%= nombre_iglesia(@nino) if @nino.iglesia %>
 </p>
 
 <%= link_to 'Editar', edit_nino_path(@nino) %> |
