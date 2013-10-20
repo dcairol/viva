@@ -6,4 +6,8 @@ module FamiliaHelper
   def nombre_familia obj
     obj.familia.nombre if obj.familia
   end
+
+  def familias_sorted familias
+    familias.sort_by{|familia| familia.nombre}
+  end
 end

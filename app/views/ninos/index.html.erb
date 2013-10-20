@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @ninos.each do |nino| %>
+    <% ninos_sorted(@ninos).each do |nino| %>
       <tr>
         <td><%= nino.nombre %></td>
         <td><%= nino.edad %></td>

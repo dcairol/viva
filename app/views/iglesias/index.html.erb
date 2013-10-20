@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @iglesias.each do |iglesia| %>
+    <% iglesias_sorted(@iglesias).each do |iglesia| %>
       <tr>
         <td><%= iglesia.nombre %></td>
         <td><%= iglesia.pastor %></td>

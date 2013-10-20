@@ -20,7 +20,7 @@
   </thead>
 
   <tbody>
-    <% @familias.each do |familia| %>
+    <% familias_sorted(@familias).each do |familia| %>
       <tr>
         <td><%= familia.nombre %></td>
         <td><%= familia.grupo %></td>
