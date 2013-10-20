@@ -1,6 +1,6 @@
 module IglesiaHelper
   def map_iglesias iglesias
-    iglesias.map{|iglesia| [iglesia.nombre,iglesia.id]}
+    iglesias.map{|iglesia| [iglesia.nombre,iglesia.id]}.sort
   end
 
   def nombre_iglesia obj

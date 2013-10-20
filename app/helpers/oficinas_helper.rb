@@ -1,6 +1,6 @@
 module OficinasHelper
   def map_oficinas oficinas
-    oficinas.map{|oficina| [oficina.nombre,oficina.id]}
+    oficinas.map{|oficina| [oficina.nombre,oficina.id]}.sort
   end
 
   def nombre_oficina obj

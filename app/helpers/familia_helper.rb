@@ -1,6 +1,6 @@
 module FamiliaHelper
   def map_familias familias
-    familias.map{|familia| [familia.nombre,familia.id]}
+    familias.map{|familia| [familia.nombre,familia.id]}.sort
   end
 
   def nombre_familia obj
