@@ -20,7 +20,7 @@
   </div>
   <div class="field">
     <%= f.label :fecha_nacimiento %><br>
-    <%= f.date_select :fecha_nacimiento %>
+    <%= f.text_field :fecha_nacimiento,{class: 'fecha'} %>
   </div>
   <div class="field">
     <%= f.label :telefono %><br>
@@ -42,3 +42,8 @@
     <%= f.submit 'Guardar' %>
   </div>
 <% end %>
+<script type='text/javascript'>
+  jQuery(function(){
+    jQuery('.fecha').datepicker({dateFormat:'yy-mm-dd'});
+  });
+</script>

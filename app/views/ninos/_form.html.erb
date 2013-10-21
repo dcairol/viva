@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :fecha_nacimiento %><br>
-    <%= f.date_select :fecha_nacimiento %>
+    <%= f.text_field :fecha_nacimiento,{class: 'fecha'} %>
   </div>
   <div class="field">
     <%= f.label :edad %><br>
@@ -29,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :fecha_ingreso %><br>
-    <%= f.date_select :fecha_ingreso %>
+    <%= f.text_field :fecha_ingreso,{class: 'fecha'} %>
   </div>
   <div class="field">
     <%= f.label :fecha_egreso %><br>
-    <%= f.date_select :fecha_egreso %>
+    <%= f.text_field :fecha_egreso,{class: 'fecha'} %>
   </div>
   <div class="field">
     <%= f.label :motivo_ingreso %><br>
@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :fecha_vencimiento_medida %><br>
-    <%= f.date_select :fecha_vencimiento_medida %>
+    <%= f.text_field :fecha_vencimiento_medida,{class: 'fecha'} %>
   </div>
   <div class="field">
     <%= f.label :oficina_id %><br>
@@ -67,3 +67,9 @@
     <%= f.submit 'Guardar' %>
   </div>
 <% end %>
+
+<script type ='text/javascript'>
+  jQuery(function(){
+    jQuery('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
+  });
+</script>
