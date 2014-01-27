@@ -72,7 +72,7 @@ class NinosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nino_params
-      params.require(:nino).permit(:nombre, :fecha_nacimiento, :edad, :sexo, :fecha_ingreso, :fecha_egreso, :motivo_ingreso, :motivo_egreso, :fecha_vencimiento_medida, :oficina_id, :familia_id, :tipo_acogimiento, :iglesia_id)
+      params.require(:nino).permit(:nombre, :fecha_nacimiento, :edad, :sexo, :fecha_ingreso, :fecha_egreso, :motivo_ingreso, :motivo_egreso, :fecha_vencimiento_medida, :oficina_id, :familia_id, :tipo_acogimiento, :iglesia_id,:grupo_hermanos,:numero_hermanos,:subvencionado,:discapacidad,:referencia,:medida_proteccion,:situacion_legal,:codigo_alternativa,:subsidio_aprobado,:fecha_medida_proteccion,:ayudas_instituciones,:tipo_discapacidad,:causa_permanencia,:escolaridad,:servicio_apoyo,:causa_egreso)
     end
 
     def set_iglesias

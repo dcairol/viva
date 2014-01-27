@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831150332) do
+ActiveRecord::Schema.define(version: 20140126144410) do
 
   create_table "donantes", force: true do |t|
     t.string   "nombre"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20130831150332) do
     t.text     "perfil"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "activa"
   end
 
   create_table "iglesias", force: true do |t|
@@ -67,6 +68,23 @@ ActiveRecord::Schema.define(version: 20130831150332) do
     t.integer  "iglesia_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cedula"
+    t.boolean  "grupo_hermanos"
+    t.integer  "numero_hermanos"
+    t.boolean  "subvencionado"
+    t.boolean  "discapacidad"
+    t.string   "referencia"
+    t.string   "medida_proteccion"
+    t.string   "situacion_legal"
+    t.string   "codigo_alternativa"
+    t.integer  "subsidio_aprobado"
+    t.date     "fecha_medida_proteccion"
+    t.text     "ayudas_instituciones"
+    t.string   "tipo_discapacidad"
+    t.string   "causa_permanencia"
+    t.string   "escolaridad"
+    t.string   "servicio_apoyo"
+    t.string   "causa_egreso"
   end
 
   create_table "oficinas", force: true do |t|
@@ -102,5 +120,23 @@ ActiveRecord::Schema.define(version: 20130831150332) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "usuarios", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
 end

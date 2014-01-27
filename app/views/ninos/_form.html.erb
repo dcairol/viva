@@ -2,7 +2,6 @@
   <% if @nino.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@nino.errors.count, "error") %> prohibited this nino from being saved:</h2
-
       <ul>
       <% @nino.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -15,9 +14,78 @@
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
   </div>
+
+  <div class="field">
+    <%= f.label :cedula %><br>
+    <%= f.text_field :cedula %>
+  </div>
+  <div class="field">
+    <%= f.label :grupo_hermanos, 'Grupo de Hermanos' %><br>
+    <%= f.check_box :grupo_hermanos %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_hermanos, 'Número de Hermanos' %><br>
+    <%= f.number_field :numero_hermanos %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_medida_proteccion %><br>
+    <%= f.text_field :fecha_medida_proteccion,{class: 'fecha'} %>
+  </div>
   <div class="field">
     <%= f.label :fecha_nacimiento %><br>
     <%= f.text_field :fecha_nacimiento,{class: 'fecha'} %>
+  </div>
+  <div class="field">
+    <%= f.label :subvencionado, 'Subvencionado' %><br>
+    <%= f.check_box :subvencionado %>
+  </div>
+  <div class="field">
+    <%= f.label :discapacidad %><br>
+    <%= f.check_box :discapacidad %>
+  </div>
+  <div class="field">
+    <%= f.label :referencia,'Referido por:' %><br>
+    <%= select :nino,:referencia, opciones_combo(OpcionesCombo::REFERENCIAS,@nino.referencia),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :medida_proteccion,'Referido por:' %><br>
+    <%= select :nino,:medida_proteccion, opciones_combo(OpcionesCombo::MEDIDAS_PROTECCION,@nino.medida_proteccion),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :situacion_legal,'Situación Legal:' %><br>
+    <%= select :nino,:situacion_legal, opciones_combo(OpcionesCombo::SITUACIONES_LEGALES,@nino.situacion_legal),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo_alternativa %><br>
+    <%= f.text_field :codigo_alternativa %>
+  </div>
+  <div class="field">
+    <%= f.label :subsidio_aprobado %><br>
+    <%= f.number_field :subsidio_aprobado %>
+  </div>
+  <div class="field">
+    <%= f.label :ayuda_instituciones %><br>
+    <%= select :nino,:ayudas_instituciones, opciones_combo(OpcionesCombo::INSTITUCIONES,@nino.ayudas_instituciones),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_discapacidad %><br>
+    <%= select :nino,:tipo_discapacidad, opciones_combo(OpcionesCombo::TIPOS_DISCAPACIDAD,@nino.tipo_discapacidad),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :causa_permanencia %><br>
+    <%= select :nino,:causa_permanencia, opciones_combo(OpcionesCombo::CAUSAS_PERMANENCIA,@nino.causa_permanencia),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :escolaridad %><br>
+    <%= select :nino,:escolaridad, opciones_combo(OpcionesCombo::ESCOLARIDADES,@nino.escolaridad),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :servicio_apoyo %><br>
+    <%= select :nino,:servicio_apoyo, opciones_combo(OpcionesCombo::SERVICIOS_APOYO,@nino.servicio_apoyo),default_blank  %>
+  </div>
+  <div class="field">
+    <%= f.label :causa_egreso %><br>
+    <%= select :nino,:causa_egreso, opciones_combo(OpcionesCombo::CAUSAS_EGRESO,@nino.causa_egreso),default_blank  %>
   </div>
   <div class="field">
     <%= f.label :edad %><br>
@@ -56,8 +124,8 @@
     <%= select(:nino,:familia_id,map_familias(@familias)) %>
   </div>
   <div class="field">
-    <%= f.label :tipo_acogimiento %><br>
-    <%= f.text_field :tipo_acogimiento %>
+    <%= f.label :tipo_acogimiento,'Tipos de acogimiento' %><br>
+    <%= select(:nino,:tipo_acogimiento,Nino::TIPOS_ACOGIMIENTO.map{|a| [a,a] } ) %>
   </div>
   <div class="field">
     <%= f.label :iglesia_id %><br>
@@ -69,7 +137,12 @@
 <% end %>
 
 <script type ='text/javascript'>
-  jQuery(function(){
-    jQuery('.fecha').datepicker({dateFormat: 'yy-mm-dd'});
-  });
+  (function($){
+    var _this = this;
+    var dateFormat = 'yy-mm-dd';
+    $(document).ready(function(){
+      _this.$fechas = $('.fecha');
+      _this.$fechas.datepicker({dateFormat: dateFormat});
+    });
+  })(jQuery);
 </script>
