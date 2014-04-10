@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.ui.all
+//= require jquery.ui.datepicker-es.js
 //= require dataTables/jquery.dataTables

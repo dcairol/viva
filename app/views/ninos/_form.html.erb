@@ -32,6 +32,14 @@
     <%= f.text_field :fecha_medida_proteccion,{class: 'fecha'} %>
   </div>
   <div class="field">
+    <%= f.label :fecha_vencimiento_medida %><br>
+    <%= f.text_field :fecha_vencimiento_medida,{class: 'fecha'} %>
+  </div>
+  <div class="field">
+    <%= f.label :medida_proteccion,'Medida de Protección:' %><br>
+    <%= select :nino,:medida_proteccion, opciones_combo(OpcionesCombo::MEDIDAS_PROTECCION,@nino.medida_proteccion),default_blank  %>
+  </div>
+  <div class="field">
     <%= f.label :fecha_nacimiento %><br>
     <%= f.text_field :fecha_nacimiento,{class: 'fecha'} %>
   </div>
@@ -44,12 +52,12 @@
     <%= f.check_box :discapacidad %>
   </div>
   <div class="field">
-    <%= f.label :referencia,'Referido por:' %><br>
-    <%= select :nino,:referencia, opciones_combo(OpcionesCombo::REFERENCIAS,@nino.referencia),default_blank  %>
+    <%= f.label :tipo_discapacidad %><br>
+    <%= select :nino,:tipo_discapacidad, opciones_combo(OpcionesCombo::TIPOS_DISCAPACIDAD,@nino.tipo_discapacidad),default_blank  %>
   </div>
   <div class="field">
-    <%= f.label :medida_proteccion,'Referido por:' %><br>
-    <%= select :nino,:medida_proteccion, opciones_combo(OpcionesCombo::MEDIDAS_PROTECCION,@nino.medida_proteccion),default_blank  %>
+    <%= f.label :referencia,'Referido por:' %><br>
+    <%= select :nino,:referencia, opciones_combo(OpcionesCombo::REFERENCIAS,@nino.referencia),default_blank  %>
   </div>
   <div class="field">
     <%= f.label :situacion_legal,'Situación Legal:' %><br>
@@ -61,15 +69,11 @@
   </div>
   <div class="field">
     <%= f.label :subsidio_aprobado %><br>
-    <%= f.number_field :subsidio_aprobado %>
+    <%= f.check_box :subsidio_aprobado %>
   </div>
   <div class="field">
     <%= f.label :ayuda_instituciones %><br>
     <%= select :nino,:ayudas_instituciones, opciones_combo(OpcionesCombo::INSTITUCIONES,@nino.ayudas_instituciones),default_blank  %>
-  </div>
-  <div class="field">
-    <%= f.label :tipo_discapacidad %><br>
-    <%= select :nino,:tipo_discapacidad, opciones_combo(OpcionesCombo::TIPOS_DISCAPACIDAD,@nino.tipo_discapacidad),default_blank  %>
   </div>
   <div class="field">
     <%= f.label :causa_permanencia %><br>
@@ -82,10 +86,6 @@
   <div class="field">
     <%= f.label :servicio_apoyo %><br>
     <%= select :nino,:servicio_apoyo, opciones_combo(OpcionesCombo::SERVICIOS_APOYO,@nino.servicio_apoyo),default_blank  %>
-  </div>
-  <div class="field">
-    <%= f.label :causa_egreso %><br>
-    <%= select :nino,:causa_egreso, opciones_combo(OpcionesCombo::CAUSAS_EGRESO,@nino.causa_egreso),default_blank  %>
   </div>
   <div class="field">
     <%= f.label :edad %><br>
@@ -112,24 +112,24 @@
     <%= f.text_area :motivo_egreso %>
   </div>
   <div class="field">
-    <%= f.label :fecha_vencimiento_medida %><br>
-    <%= f.text_field :fecha_vencimiento_medida,{class: 'fecha'} %>
+    <%= f.label :causa_egreso %><br>
+    <%= select :nino,:causa_egreso, opciones_combo(OpcionesCombo::CAUSAS_EGRESO,@nino.causa_egreso),default_blank  %>
   </div>
   <div class="field">
     <%= f.label :oficina_id %><br>
-    <%= select(:nino,:oficina_id,map_familias(@oficinas)) %>
+    <%= select(:nino,:oficina_id,map_familias(@oficinas),default_blank) %>
   </div>
   <div class="field">
     <%= f.label :familia_id %><br>
-    <%= select(:nino,:familia_id,map_familias(@familias)) %>
+    <%= select(:nino,:familia_id,map_familias(@familias),default_blank) %>
   </div>
   <div class="field">
     <%= f.label :tipo_acogimiento,'Tipos de acogimiento' %><br>
-    <%= select(:nino,:tipo_acogimiento,Nino::TIPOS_ACOGIMIENTO.map{|a| [a,a] } ) %>
+    <%= select(:nino,:tipo_acogimiento,Nino::TIPOS_ACOGIMIENTO.map{|a| [a,a] },default_blank ) %>
   </div>
   <div class="field">
     <%= f.label :iglesia_id %><br>
-    <%= select(:nino,:iglesia_id,map_familias(@iglesias)) %>
+    <%= select(:nino,:iglesia_id,map_familias(@iglesias),default_blank) %>
   </div>
   <div class="actions">
     <%= f.submit 'Guardar' %>
@@ -142,7 +142,7 @@
     var dateFormat = 'yy-mm-dd';
     $(document).ready(function(){
       _this.$fechas = $('.fecha');
-      _this.$fechas.datepicker({dateFormat: dateFormat});
+      _this.$fechas.datepicker({dateFormat: dateFormat,changeYear: true,changeMonth: true},$.datepicker.regional["es"]);
     });
   })(jQuery);
 </script>

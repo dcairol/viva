@@ -7,7 +7,10 @@ class NinosController < ApplicationController
   # GET /ninos
   # GET /ninos.json
   def index
-    @ninos = Nino.all
+    respond_to do |format|
+      format.html{}
+      format.json{render json: NinosDatatable.new(view_context)}
+    end
   end
 
   # GET /ninos/1

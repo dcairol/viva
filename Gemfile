@@ -50,3 +50,6 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'will_paginate'
+
+gem 'pry', group: :development

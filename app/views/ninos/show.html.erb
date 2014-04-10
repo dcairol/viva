@@ -2,13 +2,102 @@
 <h1>Datos de <%= @nino.nombre %></h1>
 
 <p>
+  <strong>Cédula:</strong>
+  <%= definido? @nino.cedula %>
+</p>
+
+<p>
+  <strong>Grupo de Hermanos:</strong>
+  <%= si_o_no @nino.grupo_hermanos %>
+</p>
+
+<% if @nino.grupo_hermanos %>
+<p>
+  <strong>Numero de Hermanos:</strong>
+  <%= @nino.numero_hermanos %>
+</p>
+<% end %>
+
+<p>
+  <strong>Fecha de Medida de Proteccion:</strong>
+  <%= definido? @nino.fecha_medida_proteccion %>
+</p>
+
+<p>
+  <strong>Fecha vencimiento medida:</strong>
+  <%= definido? @nino.fecha_vencimiento_medida %>
+</p>
+
+<p>
+  <strong>Medida de protección:</strong>
+  <%= definido? @nino.medida_proteccion %>
+</p>
+
+<p>
   <strong>Fecha nacimiento:</strong>
-  <%= @nino.fecha_nacimiento %>
+  <%= definido? @nino.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Está subvencionado:</strong>
+  <%= si_o_no(@nino.subvencionado) %>
+</p>
+
+<p>
+  <strong>Tiene discapacidad:</strong>
+  <%= si_o_no(@nino.discapacidad) %>
+</p>
+
+<% if @nino.discapacidad %>
+<p>
+  <strong>Tipo de discapacidad:</strong>
+  <%= @nino.tipo_discapacidad %>
+</p>
+<% end %>
+
+<p>
+  <strong>Referido por:</strong>
+  <%= definido? @nino.referencia %>
+</p>
+
+<p>
+  <strong>Situación Legal:</strong>
+  <%= definido? @nino.situacion_legal %>
+</p>
+
+<p>
+  <strong>Código Alternativa:</strong>
+  <%= definido? @nino.codigo_alternativa %>
+</p>
+
+<p>
+  <strong>Tiene Subsidio Aprobado:</strong>
+  <%=  si_o_no @nino.subsidio_aprobado %>
+</p>
+
+<p>
+  <strong>Ayuda de Instituciones:</strong>
+  <%= tiene_o_no @nino.ayudas_instituciones %>
+</p>
+
+<p>
+  <strong>Causa de Permanencia:</strong>
+  <%= definido? @nino.causa_permanencia %>
+</p>
+
+<p>
+  <strong>Escolaridad:</strong>
+  <%= definido? @nino.escolaridad %>
+</p>
+
+<p>
+  <strong>Servicio de Apoyo:</strong>
+  <%= definido? @nino.servicio_apoyo %>
 </p>
 
 <p>
   <strong>Edad:</strong>
-  <%= @nino.edad %>
+  <%= definido? @nino.edad %>
 </p>
 
 <p>
@@ -18,47 +107,47 @@
 
 <p>
   <strong>Fecha ingreso:</strong>
-  <%= @nino.fecha_ingreso %>
+  <%= definido? @nino.fecha_ingreso %>
 </p>
 
 <p>
   <strong>Fecha egreso:</strong>
-  <%= @nino.fecha_egreso %>
+  <%= definido? @nino.fecha_egreso %>
 </p>
 
 <p>
   <strong>Motivo ingreso:</strong>
-  <%= @nino.motivo_ingreso %>
+  <%= definido? @nino.motivo_ingreso %>
 </p>
 
 <p>
   <strong>Motivo egreso:</strong>
-  <%= @nino.motivo_egreso %>
+  <%= definido? @nino.motivo_egreso %>
 </p>
 
 <p>
-  <strong>Fecha vencimiento medida:</strong>
-  <%= @nino.fecha_vencimiento_medida %>
+  <strong>Causa de Egreso:</strong>
+  <%= definido? @nino.causa_egreso %>
 </p>
 
 <p>
   <strong>Oficina:</strong>
-  <%= nombre_oficina(@nino) if @nino.oficina %>
+  <%= @nino.oficina ? nombre_oficina(@nino) : 'No definido' %>
 </p>
 
 <p>
   <strong>Familia:</strong>
-  <%= nombre_familia(@nino) if @nino.familia %>
+  <%= @nino.familia ? nombre_familia(@nino) : 'No definido' %>
 </p>
 
 <p>
   <strong>Tipo acogimiento:</strong>
-  <%= @nino.tipo_acogimiento %>
+  <%= definido? @nino.tipo_acogimiento %>
 </p>
 
 <p>
   <strong>Iglesia:</strong>
-  <%= nombre_iglesia(@nino) if @nino.iglesia %>
+  <%= @nino.iglesia ? nombre_iglesia(@nino) : 'No definido' %>
 </p>
 
 <%= link_to 'Editar', edit_nino_path(@nino) %> |
