@@ -7,9 +7,18 @@ class NinosController < ApplicationController
   # GET /ninos
   # GET /ninos.json
   def index
+    session[:search] = nil
+    respond_to do |format|
+      format.html{ nullify_session }
+      format.json{render json: NinosDatatable.new(view_context,session)}
+    end
+  end
+
+  def set_filter
+    session[:filter] = params[:filter]
     respond_to do |format|
       format.html{}
-      format.json{render json: NinosDatatable.new(view_context)}
+      format.json{render json: {success: true}}
     end
   end
 
@@ -88,5 +97,9 @@ class NinosController < ApplicationController
 
     def set_oficinas
       @oficinas = Oficina.all
+    end
+
+    def nullify_session
+      session[:filter] = nil
     end
 end

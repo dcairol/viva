@@ -1,11 +1,12 @@
 Viva::Application.routes.draw do
-  get "home/index"
-  get "home_controller/index"
+
   resources :donantes
 
   resources :familias
 
   resources :ninos
+
+  get 'set_ninos_filter', to: 'ninos#set_filter'
 
   resources :reds
 

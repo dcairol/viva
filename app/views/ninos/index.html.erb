@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 <h1>Lista de Ni&ntilde;os</h1>
+
+<div id='radios'>
+  <input type='radio' name='seleccion_ninos' value='todos' checked='checked' /> Todos
+  <input type='radio' name='seleccion_ninos' value='adopcion'  /> En Adopcion
+  <input type='radio' name='seleccion_ninos' value='regresaron' /> Que Regresaron al Grupo Familiar
+  <%= link_to 'Exportar Reporte' %>
+</div>
+
 <table id='ninos_table' data-source='<%= ninos_url(format: "json") %>'>
   <thead>
     <tr>
@@ -28,7 +36,33 @@
 <script type='text/javascript'>
 
   $(function(){
-    $('#ninos_table').dataTable({
+
+    var val,
+      filtro,
+      success,
+      datatable,
+      search;
+
+    success = function success(data){
+      if(data.success){
+        search = $('#ninos_table_filter input').val();
+        datatable.fnFilter(search);
+      }
+    };
+
+    filtro = $("[name='seleccion_ninos']");
+
+    filtro.on('change',function(){
+      val = $(this).val();
+      $.ajax({
+        url: '/set_ninos_filter',
+        data: {filter: val},
+        dataType: 'json',
+        success: success
+      });
+    });
+
+    datatable = $('#ninos_table').dataTable({
       bJQueryUI: true,
       bServerSide: true,
       bProcessing: true,
