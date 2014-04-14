@@ -8,6 +8,8 @@ Viva::Application.routes.draw do
 
   get 'set_ninos_filter', to: 'ninos#set_filter'
 
+  get 'set_familias_filter', to: 'familias#set_filter'
+
   resources :reds
 
   resources :iglesias

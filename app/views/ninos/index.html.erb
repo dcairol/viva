@@ -37,37 +37,14 @@
 
   $(function(){
 
-    var val,
-      filtro,
-      success,
-      datatable,
-      search;
+    var filtro = $("[name='seleccion_ninos']");
 
-    success = function success(data){
-      if(data.success){
-        search = $('#ninos_table_filter input').val();
-        datatable.fnFilter(search);
-      }
-    };
-
-    filtro = $("[name='seleccion_ninos']");
-
-    filtro.on('change',function(){
-      val = $(this).val();
-      $.ajax({
-        url: '/set_ninos_filter',
-        data: {filter: val},
-        dataType: 'json',
-        success: success
-      });
+    viva.to_datatable('#ninos_table',{
+      filtro: filtro,
+      filtro_url: '/set_ninos_filter',
+      display_length: 100
     });
 
-    datatable = $('#ninos_table').dataTable({
-      bJQueryUI: true,
-      bServerSide: true,
-      bProcessing: true,
-      sAjaxSource: $('#ninos_table').data('source')
-    });
   });
 
 </script>

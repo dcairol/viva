@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 <h1>Familias</h1>
-<% if @familias.present? %>
-<table>
+
+<div id='radios'>
+  <input type='radio' name='seleccion_familias' value='todas' checked='checked' /> Todas
+  <input type='radio' name='seleccion_familias' value='activas' /> Activas
+  <input type='radio' name='seleccion_familias' value='no_activas'  /> No Activas
+  <%= link_to 'Exportar Reporte' %>
+</div>
+
+<table id='familias_table' data-source='<%= familias_url(format: "json") %>'>
   <thead>
     <tr>
       <th>Nombre</th>
@@ -20,26 +27,21 @@
   </thead>
 
   <tbody>
-    <% familias_sorted(@familias).each do |familia| %>
-      <tr>
-        <td><%= familia.nombre %></td>
-        <td><%= familia.grupo %></td>
-        <td><%= familia.telefonos %></td>
-        <td><%= familia.correo %></td>
-        <td><%= familia.direccion %></td>
-        <td><%= familia.aval %></td>
-        <td><%= familia.iglesia.nombre %></td>
-        <td><%= familia.tipo_acogimiento %></td>
-        <td><%= familia.perfil %></td>
-        <td><%= link_to 'Show', familia %></td>
-        <td><%= link_to 'Edit', edit_familia_path(familia) %></td>
-        <td><%= link_to 'Destroy', familia, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 <br>
 <%= link_to 'Agregar Familia', new_familia_path %>
-<% else %>
-  Actualmente no hay familias. <%= link_to 'Agrega una', new_familia_path %>!
-<% end %>
+
+<script type='text/javascript'>
+  $(function(){
+
+    var filtro = $("[name='seleccion_familias']");
+
+    viva.to_datatable('#familias_table',{
+      filtro: filtro,
+      filtro_url: '/set_familias_filter',
+      display_length: 100
+    });
+
+  });
+</script>

@@ -17,7 +17,7 @@
 
 <p>
   <strong>Correo:</strong>
-  <%= @familia.correo %>
+  <%= link_to @familia.correo, "mailto:#{@familia.correo}" %>
 </p>
 
 <p>

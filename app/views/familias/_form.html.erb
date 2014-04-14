@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :tipo_acogimiento %><br>
-    <%= f.text_field :tipo_acogimiento %>
+    <%= select(:familia,:tipo_acogimiento,Nino::TIPOS_ACOGIMIENTO.map{|a| [a,a] },default_blank ) %>
   </div>
   <div class="field">
     <%= f.label :perfil %><br>

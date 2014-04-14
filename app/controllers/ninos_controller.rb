@@ -15,7 +15,7 @@ class NinosController < ApplicationController
   end
 
   def set_filter
-    session[:filter] = params[:filter]
+    session[:ninos_filter] = params[:filter]
     respond_to do |format|
       format.html{}
       format.json{render json: {success: true}}
@@ -100,6 +100,6 @@ class NinosController < ApplicationController
     end
 
     def nullify_session
-      session[:filter] = nil
+      session[:ninos_filter] = nil
     end
 end

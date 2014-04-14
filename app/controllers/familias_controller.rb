@@ -5,7 +5,19 @@ class FamiliasController < ApplicationController
   # GET /familia
   # GET /familia.json
   def index
-    @familias = Familia.all
+    session[:search] = nil
+    respond_to do |format|
+      format.html{ nullify_session }
+      format.json{render json: FamiliasDatatable.new(view_context,session)}
+    end
+  end
+
+  def set_filter
+    session[:familias_filter] = params[:filter]
+    respond_to do |format|
+      format.html{}
+      format.json{render json: {success: true}}
+    end
   end
 
   # GET /familia/1
@@ -75,5 +87,9 @@ class FamiliasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def familia_params
       params.require(:familia).permit(:nombre, :grupo, :telefonos, :correo, :direccion, :aval, :iglesia_id, :tipo_acogimiento, :perfil)
+    end
+
+    def nullify_session
+      session[:familias_filter] = nil
     end
 end

@@ -1,14 +1,7 @@
 class NinosDatatable
+  include GenericDatatable
 
   FILTERS = {todos: 'todos',adopcion: 'adopcion',regresaron: 'regresaron'}
-
-  delegate :params, :h, :link_to, :number_to_currency, to: :@view
-
-  def initialize(view,session)
-    @view = view
-    @session = session
-    set_session
-  end
 
   def as_json(options = {})
     {
@@ -20,14 +13,6 @@ class NinosDatatable
   end
 
 private
-
-  def set_session
-    search = {}
-    search[:sort_column] = sort_column
-    search[:sort_direction] = sort_direction
-    search[:sSearch] = params[:sSearch]
-    @session[:search] = search
-  end
 
   def data
     ninos.map do |nino|
@@ -47,47 +32,35 @@ private
   end
 
   def ninos
-    @ninos ||= fetch_ninos
-  end
-
-  def fetch_ninos
-    ninos = Nino.joins('LEFT OUTER JOIN oficinas ON oficinas.id = ninos.oficina_id LEFT OUTER JOIN familias ON familias.id = ninos.familia_id LEFT OUTER JOIN iglesias ON iglesias.id = ninos.iglesia_id').order("#{sort_column} #{sort_direction}")
-    ninos = ninos.page(page).per_page(per_page)
-    ninos = ninos.where(where_filter)
-    if params[:sSearch].present?      
-      ninos = ninos.where("ninos.nombre like :search or sexo like :search or iglesias.nombre like :search or familias.nombre like :search or oficinas.nombre like :search or ninos.tipo_acogimiento like :search", search: "%#{params[:sSearch]}%")
-    end
-    ninos
+    @ninos ||= fetch_data
   end
 
   def where_filter
     
-    case @session[:filter]
+    case @session[:ninos_filter]
     when FILTERS[:adopcion]
-      ['causa_egreso IN (?,?)','Adopción Nacional','Adopción Internacional']
+      @ninos.where(['causa_egreso IN (?,?)','Adopción Nacional','Adopción Internacional'])
     when FILTERS[:regresaron]
-      ['causa_egreso = ?','Regreso al Grupo Familiar']
+      @ninos.where(['causa_egreso = ?','Regreso al Grupo Familiar'])
     when FILTERS[:todos]
-      []
+      @ninos
     else
-      []
+      @ninos
     end
   end
 
-  def page
-    params[:iDisplayStart].to_i/per_page + 1
+  def filter_data
+    @ninos = Nino.joins('LEFT OUTER JOIN oficinas ON oficinas.id = ninos.oficina_id LEFT OUTER JOIN familias ON familias.id = ninos.familia_id LEFT OUTER JOIN iglesias ON iglesias.id = ninos.iglesia_id').order("#{sort_column} #{sort_direction}")
+    @ninos = @ninos.page(page).per_page(per_page)
+    where_filter
   end
 
-  def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+  def search_data
+    @ninos.where("ninos.nombre like :search or sexo like :search or iglesias.nombre like :search or familias.nombre like :search or oficinas.nombre like :search or ninos.tipo_acogimiento like :search", search: "%#{params[:sSearch]}%")
   end
 
   def sort_column
     columns = %w[nombre edad sexo oficinas.nombre familias.nombre tipo_acogimiento iglesias.nombre]
     columns[params[:iSortCol_0].to_i]
-  end
-
-  def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
   end
 end
