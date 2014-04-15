@@ -37,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :iglesia_id %><br>
-    <%= select(:familia,:iglesia_id,map_iglesias(@iglesias)) %>
+    <%= select(:familia,:iglesia_id,map_iglesias(@iglesias),default_blank) %>
   </div>
   <div class="field">
     <%= f.label :tipo_acogimiento %><br>

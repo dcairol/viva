@@ -12,6 +12,25 @@ class FamiliasController < ApplicationController
     end
   end
 
+  def csv_report
+    ids = session[FamiliasDatatable.datatable_key][:ids]
+
+    if ids
+      @familias = Familia.where('id IN (?)',ids)
+    else
+      @familias = Familia.scoped
+    end
+
+    @familias = @familias.includes(:iglesia)
+
+    respond_to do |format|
+
+      format.html{render text: 'Not implemented, use CSV'}
+      
+      format.csv{send_data @familias.to_csv}
+    end
+  end
+
   def set_filter
     session[:familias_filter] = params[:filter]
     respond_to do |format|

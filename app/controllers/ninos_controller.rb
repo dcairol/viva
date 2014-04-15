@@ -7,15 +7,30 @@ class NinosController < ApplicationController
   # GET /ninos
   # GET /ninos.json
   def index
-    session[:search] = nil
     respond_to do |format|
       format.html{ nullify_session }
       format.json{render json: NinosDatatable.new(view_context,session)}
     end
   end
 
+  def csv_report
+    ids = session[NinosDatatable.datatable_key][:ids]
+
+    if ids
+      @ninos = Nino.where('id IN (?)',ids)
+    else
+      @ninos = Nino.scoped
+    end
+
+    @ninos = @ninos.includes(:iglesia,:familia,:oficina)
+    respond_to do |format|
+      format.html{render text: 'Not implemented, use CSV'}
+      format.csv{send_data @ninos.to_csv}
+    end
+  end
+
   def set_filter
-    session[:ninos_filter] = params[:filter]
+    session[NinosDatatable.datatable_key][:filter] = params[:filter]
     respond_to do |format|
       format.html{}
       format.json{render json: {success: true}}
@@ -100,6 +115,6 @@ class NinosController < ApplicationController
     end
 
     def nullify_session
-      session[:ninos_filter] = nil
+      session[NinosDatatable.datatable_key] = nil
     end
 end

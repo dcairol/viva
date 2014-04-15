@@ -2,9 +2,13 @@ Viva::Application.routes.draw do
 
   resources :donantes
 
-  resources :familias
+  resources :familias do
+    get 'csv_report', on: :collection,as: :report
+  end
 
-  resources :ninos
+  resources :ninos do
+    get 'csv_report', on: :collection,as: :report
+  end
 
   get 'set_ninos_filter', to: 'ninos#set_filter'
 

@@ -1,6 +1,12 @@
 class NinosDatatable
   include GenericDatatable
 
+  class << self
+    def datatable_key
+      :ninos_datatable
+    end
+  end
+
   FILTERS = {todos: 'todos',adopcion: 'adopcion',regresaron: 'regresaron'}
 
   def as_json(options = {})
@@ -11,6 +17,7 @@ class NinosDatatable
       aaData: data
     }
   end
+
 
 private
 
@@ -36,8 +43,7 @@ private
   end
 
   def where_filter
-    
-    case @session[:ninos_filter]
+    case session_object[:filter]
     when FILTERS[:adopcion]
       @ninos.where(['causa_egreso IN (?,?)','Adopción Nacional','Adopción Internacional'])
     when FILTERS[:regresaron]
@@ -51,7 +57,6 @@ private
 
   def filter_data
     @ninos = Nino.joins('LEFT OUTER JOIN oficinas ON oficinas.id = ninos.oficina_id LEFT OUTER JOIN familias ON familias.id = ninos.familia_id LEFT OUTER JOIN iglesias ON iglesias.id = ninos.iglesia_id').order("#{sort_column} #{sort_direction}")
-    @ninos = @ninos.page(page).per_page(per_page)
     where_filter
   end
 
@@ -62,5 +67,9 @@ private
   def sort_column
     columns = %w[nombre edad sexo oficinas.nombre familias.nombre tipo_acogimiento iglesias.nombre]
     columns[params[:iSortCol_0].to_i]
+  end
+
+  def session_object
+    @session[datatable_key]
   end
 end

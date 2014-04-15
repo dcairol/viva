@@ -14,4 +14,8 @@ module NinosHelper
   def tiene_o_no value
   	value.present? ? value : 'No tiene'
   end
+
+  def si_o_no valor
+    valor ? 'Sí' : 'No'
+  end
 end

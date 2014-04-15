@@ -1,6 +1,12 @@
 class FamiliasDatatable
   include GenericDatatable
 
+  class << self
+    def datatable_key
+      :familias_datatable
+    end
+  end
+
   FILTERS = {todas: 'todas',activas: 'activas',no_activas: 'no_activas'}
   SELECT_FIELDS = 'familias.grupo,familias.telefonos,familias.correo,familias.direccion,familias.aval,familias.tipo_acogimiento,familias.perfil,familias.iglesia_id,iglesias.nombre,familias.nombre,iglesias.id,familias.id'
 
@@ -64,5 +70,9 @@ private
   def sort_column
     columns = %w[familias.nombre familias.grupo familias.telefonos familias.correo familias.direccion familias.aval iglesias.nombre familias.tipo_acogimiento familias.perfil]
     columns[params[:iSortCol_0].to_i]
+  end
+
+  def session_object
+    @session[datatable_key]
   end
 end

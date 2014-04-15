@@ -19,6 +19,11 @@
 <% end %>
 
 <p>
+  <strong>Medida de protección:</strong>
+  <%= definido? @nino.medida_proteccion %>
+</p>
+
+<p>
   <strong>Fecha de Medida de Proteccion:</strong>
   <%= definido? @nino.fecha_medida_proteccion %>
 </p>
@@ -26,11 +31,6 @@
 <p>
   <strong>Fecha vencimiento medida:</strong>
   <%= definido? @nino.fecha_vencimiento_medida %>
-</p>
-
-<p>
-  <strong>Medida de protección:</strong>
-  <%= definido? @nino.medida_proteccion %>
 </p>
 
 <p>
@@ -111,13 +111,13 @@
 </p>
 
 <p>
-  <strong>Fecha egreso:</strong>
-  <%= definido? @nino.fecha_egreso %>
+  <strong>Motivo ingreso:</strong>
+  <%= definido? @nino.motivo_ingreso %>
 </p>
 
 <p>
-  <strong>Motivo ingreso:</strong>
-  <%= definido? @nino.motivo_ingreso %>
+  <strong>Fecha egreso:</strong>
+  <%= definido? @nino.fecha_egreso %>
 </p>
 
 <p>

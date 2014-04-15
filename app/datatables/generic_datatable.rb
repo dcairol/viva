@@ -1,29 +1,24 @@
 module GenericDatatable
   
   delegate :params, :h, :link_to, to: :@view
+  
+  delegate :datatable_key,to: :class
 
   def initialize(view,session)
     @view = view
     @session = session
-    set_session
+    @session[datatable_key] = {}
   end
 
   private
 
-  def fetch_data    
+  def fetch_data
     data = filter_data
     if params[:sSearch].present?
       data = search_data
     end
-    data
-  end
-
-  def set_session
-    search = {}
-    search[:sort_column] = sort_column
-    search[:sort_direction] = sort_direction
-    search[:sSearch] = params[:sSearch]
-    @session[:search] = search
+    session_object[:ids] = data.collect{|item| item.id }
+    data.page(page).per_page(per_page)
   end
 
   def page

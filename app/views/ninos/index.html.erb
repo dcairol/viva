@@ -5,7 +5,7 @@
   <input type='radio' name='seleccion_ninos' value='todos' checked='checked' /> Todos
   <input type='radio' name='seleccion_ninos' value='adopcion'  /> En Adopcion
   <input type='radio' name='seleccion_ninos' value='regresaron' /> Que Regresaron al Grupo Familiar
-  <%= link_to 'Exportar Reporte' %>
+  <%= link_to 'Exportar Reporte',report_ninos_url(format: 'csv') %>
 </div>
 
 <table id='ninos_table' data-source='<%= ninos_url(format: "json") %>'>

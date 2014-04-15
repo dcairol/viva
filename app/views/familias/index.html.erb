@@ -5,7 +5,7 @@
   <input type='radio' name='seleccion_familias' value='todas' checked='checked' /> Todas
   <input type='radio' name='seleccion_familias' value='activas' /> Activas
   <input type='radio' name='seleccion_familias' value='no_activas'  /> No Activas
-  <%= link_to 'Exportar Reporte' %>
+  <%= link_to 'Exportar Reporte',report_familias_url(format: 'csv') %>
 </div>
 
 <table id='familias_table' data-source='<%= familias_url(format: "json") %>'>
