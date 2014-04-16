@@ -43,7 +43,7 @@ private
   end
 
   def where_filter
-    case session_object[:filter]
+    @ninos = case session_object[:filter]
     when FILTERS[:adopcion]
       @ninos.where(['causa_egreso IN (?,?)','Adopción Nacional','Adopción Internacional'])
     when FILTERS[:regresaron]

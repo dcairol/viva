@@ -45,7 +45,7 @@ private
   end
 
   def where_filter
-    case @session[:familias_filter]
+    @familias = case session_object[:filter]
     when FILTERS[:activas]
       @familias.joins(:ninos).uniq
     when FILTERS[:no_activas]
@@ -55,6 +55,7 @@ private
     else
       @familias
     end
+    @familias
   end
 
   def filter_data

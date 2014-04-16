@@ -115,6 +115,6 @@ class NinosController < ApplicationController
     end
 
     def nullify_session
-      session[NinosDatatable.datatable_key] = nil
+      session[NinosDatatable.datatable_key] = {}
     end
 end

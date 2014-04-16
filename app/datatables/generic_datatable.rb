@@ -7,7 +7,6 @@ module GenericDatatable
   def initialize(view,session)
     @view = view
     @session = session
-    @session[datatable_key] = {}
   end
 
   private

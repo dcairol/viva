@@ -5,7 +5,6 @@ class FamiliasController < ApplicationController
   # GET /familia
   # GET /familia.json
   def index
-    session[:search] = nil
     respond_to do |format|
       format.html{ nullify_session }
       format.json{render json: FamiliasDatatable.new(view_context,session)}
@@ -22,17 +21,14 @@ class FamiliasController < ApplicationController
     end
 
     @familias = @familias.includes(:iglesia)
-
     respond_to do |format|
-
       format.html{render text: 'Not implemented, use CSV'}
-      
       format.csv{send_data @familias.to_csv}
     end
   end
 
   def set_filter
-    session[:familias_filter] = params[:filter]
+    session[FamiliasDatatable.datatable_key][:filter] = params[:filter]
     respond_to do |format|
       format.html{}
       format.json{render json: {success: true}}
@@ -109,6 +105,6 @@ class FamiliasController < ApplicationController
     end
 
     def nullify_session
-      session[:familias_filter] = nil
+      session[FamiliasDatatable.datatable_key] = {}
     end
 end
